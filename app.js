@@ -1,10 +1,22 @@
-const express =  require('express')
-
-const app = express()
+const express = require('express');
+const path =  require('path');
+const paths = require('./endpoints/paths')
+const fs = require('fs')
+require('dotenv').config();
+const connectdb = require('./config/db')
+connectdb()
+const app = express();
 app.use(express.json())
+app.use(express.static('./static'))
+
+app.use('/api',paths)
 
 app.get('/',(req,res)=>{
-    res.status(200)
-    res.json({"message":"Okay running check faiz"})
+    res.status(200).json({"message":"working fine"});
 })
-app.listen(8000,console.log(`listening to port : 8000`))
+app.all('*',(req,res)=>{
+    res.destroy(null);
+})
+app.listen(process.env.PORT, ()=>{
+    console.log('listening to port ',process.env.PORT);
+})
