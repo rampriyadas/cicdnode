@@ -1,9 +1,7 @@
 const express = require('express');
-const path =  require('path');
-const paths = require('./endpoints/paths')
-const fs = require('fs')
+const paths = require('./endpoints/paths');
 require('dotenv').config();
-const connectdb = require('./config/db')
+const connectdb = require('./config/db');
 connectdb()
 const app = express();
 app.use(express.json())

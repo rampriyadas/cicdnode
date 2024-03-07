@@ -8,4 +8,8 @@ router.route('/shapefile').post(controller.postData)
 router.route('/khasra').post(khsaraDetails.getData)
 
 router.route('/getsampleexcel').get(excel.getX)
+router.route('/uploadportfolio').post(excel.postX)
+
+// router.route('/test').get(excel.test)
+
 module.exports = router
