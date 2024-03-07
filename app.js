@@ -10,7 +10,7 @@ app.use(express.static('./static'))
 app.use('/api',paths)
 
 app.get('/',(req,res)=>{
-    res.status(200).json({"message":"working fine"});
+    res.status(200).json({"message":"working fine after git"});
 })
 app.all('*',(req,res)=>{
     res.destroy(null);
