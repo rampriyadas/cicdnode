@@ -56,19 +56,19 @@ const getData = async (req,res)=>{
     //      res.status(404).json({"message":"no data found"})
     //     }
     // }
-    console.log(process.env.SENTINEL_TOKEN)
-    const instance = axios.create({
+    
+    const instance2 = axios.create({
     baseURL: "https://services.sentinel-hub.com"
     })
     const config = {
     headers: {
         'Content-Type': 'application/json',
-    'Accept': 'application/json'
+    'Accept': 'application/json',
+    'Authorization' :  `Bearer ${process.env.SENTINEL_TOKEN}`,
     }
     }
-    Object.assign(instance.defaults, {headers: {authorization: `Bearer ${process.env.SENTINEL_TOKEN}`}})
 
-const body = qs.stringify(
+const body = 
     {
         "input": {
          "bounds": {
@@ -118,17 +118,20 @@ const body = qs.stringify(
                   "to": "2021-01-01T00:00:00Z"
             },
           "aggregationInterval": {
-              "of": "P1M"
+              "of": "P5D"
           },
+          
           "evalscript": evalscript,
           "resx": 10,
           "resy": 10
         }
       }      
-)
 
-    instance.post("/api/v1/statistics", body, config).then(resp => {
-        console.log(resp)
+
+await instance2.post("/api/v1/statistics", body, config).then(resp => {
+        resp.data.data.forEach(element => {
+          console.log(element)
+        });
     })
 }
 
