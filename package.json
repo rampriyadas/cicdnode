@@ -11,6 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "@turf/centroid": "^6.5.0",
+    "@turf/turf": "^6.5.0",
     "axios": "^1.6.7",
     "cors": "^2.8.5",
     "dotenv": "^16.4.4",
