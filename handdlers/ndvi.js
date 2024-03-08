@@ -1,6 +1,6 @@
 const khasra = require('../schema/khasra')
 const axios = require("axios")
-const gettoken = require('./config/gettoken')
+const gettoken = require('../config/gettoken')
 
 const getX = async (req,res)=>{
  if(req.body.khasra!=''){
@@ -59,7 +59,7 @@ const getX = async (req,res)=>{
     await instance2.post("/api/v1/statistics", body, config).then(resp => {
         res.status(200).json({"message":"okay","data":resp.data.data})
     }).catch( async()=>{
-      await gettoken();
+      await gettoken()
       res.status(200).json({"message":"please try again"})
     })    
     }
