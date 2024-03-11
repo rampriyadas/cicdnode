@@ -11,7 +11,7 @@ gettoken()
 const app = express();
 app.use(express.json())
 app.use(express.static('./static'))
-const whitelist = ["http://localhost:3000"]
+const whitelist = ["http://127.0.0.1:3000","localhost:3000","127.0.0.1:3000"]
 const corsOptions = {
   origin: function (origin, callback) {
     if (!origin || whitelist.indexOf(origin) !== -1) {
